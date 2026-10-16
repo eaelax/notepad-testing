@@ -14,7 +14,6 @@ import {
   ShieldAlert,
   Check,
   AlertTriangle,
-  Layout,
 } from 'lucide-react';
 
 interface SettingsModalProps {
@@ -118,13 +117,6 @@ const SettingsModalContent: React.FC<SettingsModalContentProps> = ({
     { id: 'dotted', label: 'Dotted Paper', shortLabel: 'Dotted' },
   ];
 
-  const widthOptions: { id: EditorWidth; label: string }[] = [
-    { id: 'narrow', label: t.widthNarrow || 'Narrow' },
-    { id: 'medium', label: t.widthMedium || 'Medium' },
-    { id: 'wide', label: t.widthWide || 'Wide' },
-    { id: 'full', label: t.widthFull || 'Full Width' },
-  ];
-
   const renderPaperThumbnail = (styleId: PageStyle) => {
     switch (styleId) {
       case 'blank':
@@ -182,24 +174,19 @@ const SettingsModalContent: React.FC<SettingsModalContentProps> = ({
   };
 
   return (
-    <>
+    <div
+      className="fixed inset-0 w-screen h-screen z-[9999] flex items-center justify-center p-3 sm:p-4 bg-black/35 backdrop-blur-md animate-in fade-in duration-150"
+      dir={isRtl ? 'rtl' : 'ltr'}
+      onClick={handleRequestClose}
+      aria-hidden="true"
+    >
       <div
-        className="fixed inset-0 z-40 bg-slate-950/45 animate-in fade-in duration-150"
-        onClick={handleRequestClose}
-        aria-hidden="true"
-      />
-
-      <div
-        className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 pointer-events-none"
-        dir={isRtl ? 'rtl' : 'ltr'}
+        className="w-full max-w-full sm:max-w-[660px] rounded-2xl bg-white dark:bg-[#141822] text-slate-900 dark:text-slate-100 border border-slate-200/80 dark:border-slate-800/80 overflow-hidden flex flex-col my-auto transition-all animate-in zoom-in-95 duration-150 relative shadow-2xl"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="settings-title"
+        onClick={(e) => e.stopPropagation()}
       >
-        <div
-          className="pointer-events-auto w-full max-w-full sm:max-w-[660px] rounded-2xl bg-white dark:bg-[#141822] text-slate-900 dark:text-slate-100 border border-slate-200/80 dark:border-slate-800/80 overflow-hidden flex flex-col my-auto transition-all animate-in zoom-in-95 duration-150 relative shadow-2xl"
-          role="dialog"
-          aria-modal="true"
-          aria-labelledby="settings-title"
-          onClick={(e) => e.stopPropagation()}
-        >
           <div className="px-6 py-4 flex items-center justify-between border-b border-slate-200/70 dark:border-slate-800/80">
             <div className="flex items-center gap-3">
               <div className="w-9 h-9 rounded-xl bg-indigo-50 dark:bg-indigo-950/60 text-indigo-600 dark:text-indigo-400 flex items-center justify-center shrink-0">
@@ -367,8 +354,6 @@ const SettingsModalContent: React.FC<SettingsModalContentProps> = ({
               </div>
             </div>
 
-
-
             {/* Section 4: Danger Zone */}
             {onOpenResetAll && (
               <div className="rounded-xl bg-rose-50/60 dark:bg-rose-950/25 border border-rose-200/70 dark:border-rose-900/50 p-4 flex items-center justify-between gap-3">
@@ -473,6 +458,5 @@ const SettingsModalContent: React.FC<SettingsModalContentProps> = ({
           )}
         </div>
       </div>
-    </>
   );
 };
