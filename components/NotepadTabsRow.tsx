@@ -364,7 +364,7 @@ export const NotepadTabsRow: React.FC<NotepadTabsRowProps> = ({
               className="w-full px-3 py-2 rounded-lg flex items-center gap-2.5 text-rose-600 dark:text-rose-400 hover:bg-rose-50 dark:hover:bg-rose-950/40 text-left transition-colors cursor-pointer text-xs font-medium"
             >
               <Trash2 className="w-4 h-4 text-rose-500 shrink-0" />
-              <span>{t.deleteThisNote || 'Delete This Note'}</span>
+              <span>{t.deleteNote || 'Delete This Note'}</span>
             </button>
 
             {/* 5. Delete All Notes (Red Alert) */}
